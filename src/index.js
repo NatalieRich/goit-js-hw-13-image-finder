@@ -24,7 +24,7 @@ function onSearch(e) {
   apiService.query = e.currentTarget.elements.query.value;
 
   if (apiService.query === '') {
-    return alert('Введи что-то нормальное');
+    return alert('Enter the value!');
   }
 
   loadMoreBtn.show();
@@ -37,7 +37,11 @@ function fetchImages() {
   loadMoreBtn.disable();
     return apiService.fetchImages().then(images => {
     appendGallaryMarkup(images)
-    loadMoreBtn.enable();
+        loadMoreBtn.enable();
+        if (images.length === 0) {
+            loadMoreBtn.hide();
+            return alert('No matches found!')
+        }
   });
 }
 function appendGallaryMarkup(images) {
