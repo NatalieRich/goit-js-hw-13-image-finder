@@ -2454,7 +2454,7 @@ function onSearch(e) {
   apiService.query = e.currentTarget.elements.query.value;
 
   if (apiService.query === '') {
-    return alert('Введи что-то нормальное');
+    return alert('Enter the value!');
   }
 
   loadMoreBtn.show();
@@ -2468,6 +2468,11 @@ function fetchImages() {
   return apiService.fetchImages().then(function (images) {
     appendGallaryMarkup(images);
     loadMoreBtn.enable();
+
+    if (images.length === 0) {
+      loadMoreBtn.hide();
+      return alert('No matches found!');
+    }
   });
 }
 
@@ -2517,7 +2522,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57679" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54812" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
